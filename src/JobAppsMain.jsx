@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PlusCircle, Trash2, BarChart3, Table, LogOut, TrendingUp, Calendar, Building2, Loader2 } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { supabase } from './supabaseClient';
+import { SankeyChart } from './components';
 
 const JobAppsMain = ({ user, onLogout }) => {
     const [applications, setApplications] = useState([]);
@@ -161,8 +162,8 @@ const JobAppsMain = ({ user, onLogout }) => {
                         <button
                             onClick={() => setShowChart(false)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${!showChart
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             <Table className="w-4 h-4" />
@@ -171,8 +172,8 @@ const JobAppsMain = ({ user, onLogout }) => {
                         <button
                             onClick={() => setShowChart(true)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${showChart
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             <BarChart3 className="w-4 h-4" />
@@ -345,6 +346,9 @@ const JobAppsMain = ({ user, onLogout }) => {
                                         </ResponsiveContainer>
                                     </div>
                                 </div>
+
+                                {/* Sankey Chart */}
+                                <SankeyChart applications={applications} />
 
                                 <div className="bg-white p-6 rounded-lg shadow">
                                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
